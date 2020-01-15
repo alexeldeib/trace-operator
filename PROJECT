@@ -1,0 +1,7 @@
+domain: alexeldeib.xyz
+repo: github.com/alexeldeib/trace-operator
+resources:
+- group: observe
+  kind: TraceJob
+  version: v1alpha1
+version: "2"

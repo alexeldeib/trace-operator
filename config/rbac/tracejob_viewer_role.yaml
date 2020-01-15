@@ -1,0 +1,20 @@
+# permissions for end users to view tracejobs.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: tracejob-viewer-role
+rules:
+- apiGroups:
+  - observe.alexeldeib.xyz
+  resources:
+  - tracejobs
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - observe.alexeldeib.xyz
+  resources:
+  - tracejobs/status
+  verbs:
+  - get
