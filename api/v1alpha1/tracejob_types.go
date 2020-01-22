@@ -7,18 +7,15 @@ import (
 
 // TraceJobSpec defines the desired state of TraceJob
 type TraceJobSpec struct {
-	Program        string `json:"program"`
-	Hostname       string `json:"hostname"`
-	ServiceAccount string `json:"serviceAccount,omitempty"` // +optional
 	// Program is a string literal to evaluate as a bpftrace program.
-	PodUID              string `json:"podUID,omitempty"`              // +optional
-	ContainerName       string `json:"containerName,omitempty"`       // +optional
-	IsPod               bool   `json:"isPod,omitempty"`               // +optional
-	ImageNameTag        string `json:"imageNameTag,omitempty"`        // +optional
-	InitImageNameTag    string `json:"initImageNameTag,omitempty"`    // +optional
-	FetchHeaders        bool   `json:"fetchHeaders,omitempty"`        // +optional
-	Deadline            int64  `json:"deadline,omitempty"`            // +optional
-	DeadlineGracePeriod int64  `json:"deadlineGracePeriod,omitempty"` // +optional
+	Program             string  `json:"program"`
+	Hostname            string  `json:"hostname"`
+	ServiceAccount      *string `json:"serviceAccount,omitempty"`      // +optional
+	ImageNameTag        *string `json:"imageNameTag,omitempty"`        // +optional
+	InitImageNameTag    *string `json:"initImageNameTag,omitempty"`    // +optional
+	FetchHeaders        bool    `json:"fetchHeaders,omitempty"`        // +optional
+	Deadline            *int64  `json:"deadline,omitempty"`            // +optional
+	DeadlineGracePeriod *int64  `json:"deadlineGracePeriod,omitempty"` // +optional
 }
 
 // TraceJobStatus defines the observed state of TraceJob
@@ -29,6 +26,7 @@ type TraceJobStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
 
 // TraceJob is the Schema for the tracejobs API
 type TraceJob struct {

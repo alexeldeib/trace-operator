@@ -4,7 +4,7 @@ metadata:
   name: tracejob-sample
 spec:
   hostname: aks-main-67151622-vmss000004
-  program: -|
+  program: |
     /*
     * biolatency.bt	Block I/O latency as a histogram.
     *			For Linux, uses bpftrace, eBPF.

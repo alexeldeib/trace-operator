@@ -4,7 +4,9 @@ go 1.13
 
 require (
 	github.com/go-logr/logr v0.1.0
+	github.com/google/go-cmp v0.3.0
 	github.com/hashicorp/golang-lru v0.5.3 // indirect
+	github.com/imdario/mergo v0.3.6
 	github.com/iovisor/kubectl-trace v0.1.0-rc.1
 	github.com/onsi/ginkgo v1.10.1
 	github.com/onsi/gomega v1.7.0
