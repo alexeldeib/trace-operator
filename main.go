@@ -1,7 +1,3 @@
-/*
-Copyright 2020 Alexander Eldeib.
-*/
-
 package main
 
 import (
