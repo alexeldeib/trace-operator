@@ -1,8 +1,11 @@
 # Kubectl Trace Operator
 
 This is a simple operator to wrap [kubectl-trace][0], such that a user may
-create TraceJob CRDs against a Kubernetes API server. It maps the user-provided CRD
-directly into the existing [tracejob type][1]. 
+create TraceJob CRDs against a Kubernetes API server. It maps the user-provided
+CRD directly into the existing [tracejob type][1]. The main advantage of this
+approach is it enables a dynamic, programmatic method to create tracejobs
+without external user action. For example, detection of breach of some metric
+could trigger deeper analysis via creating a TraceJob CRD. 
 
 Since we are running in a controller context I've made a slight modification and
 returned the ConfigMap and Job so the controller can apply ownership labels for
