@@ -21,8 +21,7 @@ type TraceJobSpec struct {
 // TraceJobStatus defines the observed state of TraceJob
 type TraceJobStatus struct {
 	// ID is a generated UUID for this object.
-	ID    types.UID `json:"id,omitempty"`
-	State *string   `json:"state,omitempty"`
+	ID *types.UID `json:"id,omitempty"`
 }
 
 // +kubebuilder:object:root=true
@@ -38,6 +37,7 @@ type TraceJob struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
 
 // TraceJobList contains a list of TraceJob
 type TraceJobList struct {

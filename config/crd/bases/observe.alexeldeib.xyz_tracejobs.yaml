@@ -65,8 +65,6 @@ spec:
             id:
               description: ID is a generated UUID for this object.
               type: string
-            state:
-              type: string
           type: object
       type: object
   version: v1alpha1

@@ -70,12 +70,37 @@ first SIGINT received, now if your program had maps and did not free them it sho
 
 ## Cleanup
 
-After running the quickstart, deleting all operator related objects can be done with:
+After running the quickstart, deleting all operator related objects can be done
+with:
 ```bash
 # From the root of this repo
 kustomize build ./config/default | kubectl delete -f -
 ```
 
+## Implementation Details
+
+Since the operator shells out to the the tracejob package from kubectl-trace
+under the hood, it has some nice interoperability with the CLI. For example, a
+job created via CRD will have a field `.status.id` which can be fed back into
+kubectl-trace to attach (although it seems there's a potential issue where
+instead of printing the maps the process gets killed first):
+
+```bash
+$ kubectl get tracejob -o jsonpath="{.items[0].status.id}" 
+8384546d-b1a4-4024-bc75-6c3bdb539646
+$ kubectl trace attach 8384546d-b1a4-4024-bc75-6c3bdb539646
+^C
+first SIGINT received, now if your program had maps and did not free them it should print them out
+
+
+@usecs:
+[256, 512)             2 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[512, 1K)              1 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[1K, 2K)               0 |                                                    |
+[2K, 4K)               0 |                                                    |
+[4K, 8K)               0 |                                                    |
+[8K, 16K)              1 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+```
 
 [0]: https://github.com/iovisor/kubectl-trace
 [1]: https://github.com/iovisor/kubectl-trace/blob/master/pkg/tracejob/job.go
